@@ -1,0 +1,16 @@
+{
+  "name": "drag-and-drop-project-ts",
+  "version": "1.0.0",
+  "description": "Drag and drop project TypeScript",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "author": "cd-roman",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1",
+    "typescript": "^5.5.4"
+  }
+}
