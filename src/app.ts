@@ -1,5 +1,35 @@
 console.log("app.ts is running");
 
+// Validation
+interface Validatable {
+  value: string | number;
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  min?: number;
+  max?: number;
+}
+
+function validate(input: Validatable) {
+  let isValid = true;
+  if (input.required) {
+    isValid = isValid && input.value.toString().trim().length !== 0;
+  }
+  if (input.minLength != null && typeof input.value === "string") {
+    isValid = isValid && input.value.length >= input.minLength;
+  }
+  if (input.maxLength != null && typeof input.value === "string") {
+    isValid = isValid && input.value.length <= input.maxLength;
+  }
+  if (input.min != null && typeof input.value === "number") {
+    isValid = isValid && input.value >= input.min;
+  }
+  if (input.max != null && typeof input.value === "number") {
+    isValid = isValid && input.value <= input.max;
+  }
+  return isValid;
+}
+
 // Autobind decorator
 function autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
   const originalMethod = descriptor.value;
@@ -55,10 +85,28 @@ class ProjectInput {
     const enteredDescription = this.descriptionInputElement.value;
     const enteredPeople = this.peopleInputElement.value;
 
+    const titleValidatable: Validatable = {
+      value: enteredTitle,
+      required: true,
+    };
+
+    const descriptionValidatable: Validatable = {
+      value: enteredDescription,
+      required: true,
+      minLength: 5,
+    };
+
+    const peopleValidatable: Validatable = {
+      value: +enteredPeople,
+      required: true,
+      min: 1,
+      max: 5,
+    };
+
     if (
-      enteredTitle.trim().length === 0 ||
-      enteredDescription.trim().length === 0 ||
-      enteredPeople.trim().length === 0
+      !validate(titleValidatable) ||
+      !validate(descriptionValidatable) ||
+      !validate(peopleValidatable)
     ) {
       alert("Invalid input, please try again!");
       return;
