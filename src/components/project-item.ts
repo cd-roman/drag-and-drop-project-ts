@@ -36,6 +36,7 @@ export class ProjectItem
     setTimeout(() => {
       this.element.style.display = "none"; // Hide the element during drag
     }, 0);
+    this.element.classList.add("dragging");
   }
 
   @autobind
@@ -49,6 +50,7 @@ export class ProjectItem
     ) {
       this.originalParent!.appendChild(this.element); // Reinsert back to original parent if not dropped in a valid target
     }
+    this.element.classList.remove("dragging");
   }
 
   configure() {
