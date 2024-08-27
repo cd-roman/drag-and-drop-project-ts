@@ -25,6 +25,7 @@ export class ProjectList
       event.preventDefault();
       const listEl = this.element.querySelector("ul")!;
       listEl.classList.add("droppable");
+      event.dataTransfer!.dropEffect = "move";
     }
   }
 

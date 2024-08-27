@@ -1,13 +1,15 @@
 import { Draggable } from "../models/drag-drop.js";
 import { Component } from "./base-component.js";
-import { Project } from "../models/project.js";
+import { Project, ProjectStatus } from "../models/project.js";
 import { autobind } from "../decorators/autobind.js";
+import { projectState } from "../state/project-state.js";
 
 export class ProjectItem
   extends Component<HTMLUListElement, HTMLLIElement>
   implements Draggable
 {
   private project: Project;
+  private originalParent: HTMLElement | null = null;
 
   get persons() {
     if (this.project.people === 1) {
@@ -29,10 +31,24 @@ export class ProjectItem
   dragStartHandler(event: DragEvent) {
     event.dataTransfer!.setData("text/plain", this.project.id);
     event.dataTransfer!.effectAllowed = "move";
+    event.dataTransfer!.setDragImage(this.element, 0, 0);
+    this.originalParent = this.element.parentElement;
+    setTimeout(() => {
+      this.element.style.display = "none"; // Hide the element during drag
+    }, 0);
   }
 
+  @autobind
   dragEndHandler(_: DragEvent) {
-    console.log("DragEnd");
+    this.element.style.display = "block"; // Show the element after drag
+    const project = projectState.getProjectById(this.project.id);
+    if (
+      project &&
+      project.status !== ProjectStatus.Active &&
+      project.status !== ProjectStatus.Finished
+    ) {
+      this.originalParent!.appendChild(this.element); // Reinsert back to original parent if not dropped in a valid target
+    }
   }
 
   configure() {

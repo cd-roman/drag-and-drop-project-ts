@@ -46,6 +46,10 @@ export class ProjectState extends State<Project> {
     }
   }
 
+  getProjectById(projectId: string): Project | undefined {
+    return this.projects.find((prj) => prj.id === projectId);
+  }
+
   private updateListeners() {
     for (const listenerFn of this.listeners) {
       listenerFn(this.projects.slice());
