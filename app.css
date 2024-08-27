@@ -34,7 +34,7 @@ textarea {
 input:focus,
 textarea:focus {
   outline: none;
-  background: #fff5f9;
+  background: #faefe7;
 }
 
 button {
