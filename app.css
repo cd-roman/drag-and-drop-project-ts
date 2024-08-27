@@ -3,7 +3,7 @@
 }
 
 html {
-  font-family: sans-serif;
+  font-family: Open Sans, sans-serif;
 }
 
 body {
@@ -15,6 +15,7 @@ input,
 textarea {
   display: block;
   margin: 0.5rem 0;
+  border-radius: 5px;
 }
 
 label {
@@ -38,8 +39,8 @@ textarea:focus {
 
 button {
   font: inherit;
-  background: #ff0062;
-  border: 1px solid #ff0062;
+  background: #f1812f;
+  border: 1px solid #f1812f;
   cursor: pointer;
   color: white;
   padding: 0.75rem 1rem;
@@ -51,29 +52,42 @@ button:focus {
 
 button:hover,
 button:active {
-  background: #a80041;
-  border-color: #a80041;
+  background: #db6007;
+  border-color: #db6007;
+}
+
+#app {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.header {
+  text-align: center;
+  color: #555555;
+  border-radius: 10px;
 }
 
 .projects {
   margin: 1rem;
-  border: 1px solid #ff0062;
+  border: 1px solid #f1812f;
+  border-radius: 10px;
 }
 
 .projects header {
-  background: #ff0062;
+  background: #f1812f;
   height: 3.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px 10px 0px 0px;
 }
 
 #finished-projects {
-  border-color: #0044ff;
+  border-color: #40b475;
 }
 
 #finished-projects header {
-  background: #0044ff;
+  background: #40b475;
 }
 
 .projects h2 {
@@ -94,12 +108,12 @@ button:active {
 }
 
 .projects li h2 {
-  color: #ff0062;
+  color: #f1812f;
   margin: 0.5rem 0;
 }
 
 #finished-projects li h2 {
-  color: #0044ff;
+  color: #40b475;
 }
 
 .projects li h3 {
@@ -112,16 +126,18 @@ button:active {
 }
 
 .droppable {
-  background: #ffe3ee;
+  background: #ffe3cf;
 }
 
 #finished-projects .droppable {
-  background: #d6e1ff;
+  background: #dfefe7;
 }
 
 #user-input {
   margin: 1rem;
   padding: 1rem;
-  border: 1px solid #ff0062;
+  border: 1px solid #f1812f;
+  border-radius: 10px;
   background: #f7f7f7;
+  color: #333333;
 }
